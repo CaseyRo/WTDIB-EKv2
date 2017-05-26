@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Eventkalender, view</title>
+
+	<!-- javascript bronnen -->
+	<script src="JS/jquery-3.2.1.min.js"></script>
+	<script src="JS/jquery.csv.min.js"></script>
+	<script src="JS/moment.min.js"></script>
+	
+	<script src="JS/tether.min.js"></script>
+	<script src="JS/bootstrap.min.js"></script>
+	<script src="JS/eventkalender-view.js"></script>
+	<!-- einde javascript bronnen -->
+	
+	<!-- CSS bronnen -->
+	<link rel="stylesheet" href="CSS/font-awesome.min.css">
+	<link rel="stylesheet" href="CSS/tether.min.css">
+	<link rel="stylesheet" href="CSS/bootstrap.min.css">
+	<link rel="stylesheet" href="CSS/style.min.css">
+	<!-- Einde CSS bronnen -->
+	
+	<!-- google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+	<!-- einde google fonts -->
+
+	<script>
+	    var DEBUG = true;
+	if(!DEBUG){
+	    if(!window.console) window.console = {};
+	    var methods = ["log", "debug", "warn", "info"];
+	    for(var i=0;i<methods.length;i++){
+	        console[methods[i]] = function(){};
+	    }
+	}
+	</script>
+
+</head>
+<body onload="console.time('calendarReadAndStore')">
+	
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="eventkalender">
+				<div class="box navigation1">
+					<i class="fa fa-chevron-left" aria-hidden="true"></i>
+				</div>
+				<div class="box month">
+				Juni
+				</div>
+				<div class="box navigation2">
+					<i class="fa fa-chevron-right" aria-hidden="true"></i>
+				</div>
+				<!-- new line -->
+				<div class="box weekdaydisplay1">
+					MA
+				</div>
+				<div class="box weekdaydisplay2">
+					DI
+				</div>
+				<div class="box weekdaydisplay3">
+					WO
+				</div>
+				<div class="box weekdaydisplay4">
+					DO
+				</div>
+				<div class="box weekdaydisplay5">
+					VR
+				</div>
+				<div class="box weekdaydisplay6">
+					ZA
+				</div>
+				<div class="box weekdaydisplay7">
+					ZO
+				</div>
+				<!-- new line -->
+				<div class="box day11">11</div>
+				<div class="box day12">12</div>
+				<div class="box day13">13</div>
+				<div class="box day14">14</div>
+				<div class="box day15">15</div>
+				<div class="box day16">16</div>
+				<div class="box day17">17</div>
+				<div class="box day21">21</div>
+				<div class="box day22">22</div>
+				<div class="box day23">23</div>
+				<div class="box day24">24</div>
+				<div class="box day25">25</div>
+				<div class="box day26">26</div>
+				<div class="box day27">27</div>
+				<div class="box day31">31</div>
+				<div class="box day32">32</div>
+				<div class="box day33">33</div>
+				<div class="box day34">34</div>
+				<div class="box day35">35</div>
+				<div class="box day36">36</div>
+				<div class="box day37">37</div>
+				<div class="box day41">41</div>
+				<div class="box day42">42</div>
+				<div class="box day43">43</div>
+				<div class="box day44">44</div>
+				<div class="box day45">45</div>
+				<div class="box day46">46</div>
+				<div class="box day47">47</div>
+				<div class="box day51">51</div>
+				<div class="box day52">52</div>
+				<div class="box day53">53</div>
+				<div class="box day54">54</div>
+				<div class="box day55">55</div>
+				<div class="box day56">56</div>
+				<div class="box day57">57</div>
+				<div class="box day61">61</div>
+				<div class="box day62">62</div>
+				<div class="box day63">63</div>
+				<div class="box day64">64</div>
+				<div class="box day65">65</div>
+				<div class="box day66">66</div>
+				<div class="box day67">67</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="daypicked">
+				16 Juni 2017
+			</div>
+			<div class="eventitem">
+				<div class="title">
+					Here's the title
+				</div>
+				<div class="icon">
+					<i class="fa fa-repeat" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Dit event komt vaker voor"></i>
+				</div>
+				<div class="image">
+					
+				</div>
+				<div class="description">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet suscipit excepturi libero minima quibusdam consequatur, cumque reiciendis nihil provident expedita sint nisi beatae! 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- popup -->
+<div class="modal fade large-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content eventdetails">
+      <div class="image">
+      	<div class="title">
+      		<div class="bigtitle">
+      			4 Mei Nationale dodenherdenking
+      			
+      		</div>
+      		<div class="close">
+      			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      		</div>
+      		<div class="smalltitle">
+      			concentratiekamp Sachsenhausen in Oranienburg
+      		</div>
+      	</div>
+        
+      	<div class="sharing">
+      		<div class="addtocal">
+      			Voeg toe aan kalender: <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+      		</div>
+      		<div class="sharingicons">
+      			deel op: <i class="fa fa-twitter-square" aria-hidden="true"></i>  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+      		</div>
+      	</div>
+	  </div>
+	  <div class="card effect__click">
+		  <div class="card__front">
+		      <div class="content">
+		      	      	Ben je 4 mei in Berlijn en heb je de behoefte om mee te doen met de Nationale Herdenking op 4 mei? Bezoek dan de dodenherdenking in het voormalig concentratiekamp Sachsenhausen, net buiten Berlijn. Net als in Nederland worden alle burgers en militairen herdacht, die sinds het uitbreken van de Tweede Wereldoorlog, in oorlogssituaties of bij vredesmissies, waar dan ook ter wereld, zijn omgekomen. Sachsenhausen is een bijzondere locatie, omdat er van 1934 tot 1945 veel Nederlanders gevangen hebben gezeten. Tientallen Nederlandse verzetsstrijders zijn er vermoord door de Nazi’s. <br/><br/>
+		      	</div>
+		      	<div class="smallcontent">
+		      	    	Meer daarover kun je lezen in mijn blog: Concentratiekamp Sachsenhausen – Van concentratiekamp tot gedenkteken.
+		      	</div>
+		   </div>
+		      <div class="card__back">
+		   		<div class="contentback">
+		   			<table class="table table-striped">
+		   			                                                  
+                      <tbody>
+                        <tr class="modallocatie" style="display: table-row;">
+                            <td class="active">Waar:</td><td class="content">Concentratiekamp Sachsenhausen</td>
+                        </tr>
+                        <tr class="modaladres" style="display: table-row;"><td class="active">Adres:</td><td class="content"><a href="https://maps.google.com?daddr=Straße der Nationen 22, 16515 Oranienburg" class="modalgoogleadres" target="_blank" rel="nofollow">Straße der Nationen 22, 16515 Oranienburg</a></td>
+                        </tr>
+                        <tr class="modalov" style="display: table-row;">
+                            <td class="active">OV:</td><td class="content">S Oranienburg</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Datum:</td><td class="modaldates">04-05-2017 t/m 05-05-2017</td>
+                        </tr>
+                        <tr class="modaltimes" style="display: table-row;">
+                            <td class="active">Tijden:</td><td class="content">19:45 tot 21:00</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Entree:</td><td class="modalentree">Gratis</td>
+                        </tr>
+                        <tr class="tr_Meerinfo" style="display: none;">
+                            <td class="active">Meer info:</td>
+                            <td><a class="modalmeerinfo" href="//freiluftkino-kreuzberg.de" rel="nofollow" target="_blank">freiluftkino-kreuzberg</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+		   		</div>
+		   		<div class="smallcontentback">
+   			    	<a href="https://maps.google.com/?daddr=Brunnenstraße+53,+13355+Berlin,+Germany" target="_blank">
+   					<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brunnenstraße+53,+13355+Berlin,+Germany&zoom=13&maptype=roadmap&markers=Brunnenstraße+53,+13355+Berlin,+Germany
+   					&key=AIzaSyDuKiZv44jf9yvpFjamLW3gnJfetfEG7ts&size=200x150"/>
+   					</a>
+		   		</div>
+		   	</div>
+	   </div>
+
+	<div class="navigation">
+		<button type="button" class="btn btn-secondary">Meer informatie</button>
+	</div>
+  </div>
+</div>
+<!-- end popup -->
+
+</body>
+</html>
