@@ -4,10 +4,8 @@ var frontcardheight = 0;
 var rearcardheight = 0;
 
 $(document).ready(function() {
-	moment.locale('nl');
-	setCalendar(now.format("MM"),now.format("YYYY"));
 	getCalendarData(now.format("MM"),now.format("YYYY"));
-	console.timeEnd("calendarReadAndStore");
+	
 	
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip();
@@ -18,20 +16,45 @@ $(document).ready(function() {
 	});
 
 	$(".month").click(function(){
-		setCalendar(now.format("MM"),now.format("YYYY"));
+		currmonth = now.clone();
+		$( ".daypicker" )
+			.addClass("flipped");
+		$(".daypicker").clone().appendTo('.eventkalender').removeClass("flipped").addClass("flippedback");
+		setTimeout(function(){
+		  setCalendar(now.format("MM"),now.format("YYYY"));
+		  $(".daypicker.flippedback").removeClass('flippedback');
+		  $('.daypicker.flipped').remove();
+		}, 200);
+		
 	});
 
-	$("div[class*='box navigation").click(function(){
+	$("div[class*='box navigation']").click(function(){
 		
 		classname = $(this).attr('class').slice(-1);
-		console.log(classname);
 		if (classname == 2){
 			currmonth.add(1,"month");
-			setCalendar(currmonth.format("MM"),currmonth.format("YYYY"));
+			
+			$( ".daypicker" )
+				.addClass("flipped");
+			$(".daypicker").clone().appendTo('.eventkalender').removeClass("flipped").addClass("flippedback");
+			setTimeout(function(){
+			  setCalendar(currmonth.format("MM"),currmonth.format("YYYY"));
+			  $(".daypicker.flippedback").removeClass('flippedback');
+			  $('.daypicker.flipped').remove();
+			}, 200);
 		}
 		if (classname == 1){
 			currmonth.subtract(1,"month");
-			setCalendar(currmonth.format("MM"),currmonth.format("YYYY"));
+			
+
+			$( ".daypicker" )
+				.addClass("flippedback");
+			$(".daypicker").clone().appendTo('.eventkalender').removeClass("flippedback").addClass("flipped");
+			setTimeout(function(){
+			  setCalendar(currmonth.format("MM"),currmonth.format("YYYY"));
+			  $(".daypicker.flipped").removeClass('flipped');
+			  $('.daypicker.flippedback').remove();
+			}, 200);
 		}
 	});
 
@@ -61,17 +84,22 @@ $(document).ready(function() {
 		}
 	});
 
-	
+	console.timeEnd("calendarReadAndStore");
 });
 
 function setCalendar(month,year){ /*sets the calendar up correctly*/
+	if (!month){
+		moment.locale('nl');
+		month = now.format("MM");
+		year = now.format("YYYY");
+	}
 	var noone,row=1;
 	var newDate = moment(month+"-"+year,"MM-YYYY");
 	var lastdayoldmonth = newDate.clone().startOf("month");
 	var monthBox = newDate.format("MMMM YYYY");
 	monthBox = monthBox.substr(0,1)
 		.toUpperCase()+monthBox.substr(1);
-	$("div[class*='day")
+	$("div[class*='day']")
 		.removeClass("today")
 		.removeClass("newMonth")
 		.data("datum","")
@@ -87,7 +115,7 @@ function setCalendar(month,year){ /*sets the calendar up correctly*/
 		if (classname == firstDay.format("E")) 
 		{
 			noone = parseInt(classname);
-			console.log(now.format("MM-YYYY") + " " + newDate.format("MM-YYYY"));
+			//console.log(now.format("MM-YYYY") + " " + newDate.format("MM-YYYY"));
 		}
 	});
 	for (var i = noone-1; i >=1; i--){ /*lets go and setup the days of the previous month*/
@@ -109,7 +137,7 @@ function setCalendar(month,year){ /*sets the calendar up correctly*/
 		noone++;
 	}
 	var nextone = parseInt(row.toString() + noone.toString());
-	console.log(nextone);
+	//console.log(nextone);
 	for (i = 1; i<=68-nextone; i++){
 		nextmonthday = moment(i+"-"+newDate.clone().add(1,"month").format("MM-YYYY"),"D-MM-YYYY");
 		$("div[class*='day"+row+noone+"']")

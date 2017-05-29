@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Eventkalender, view</title>
 <script src="JS/jquery-3.2.1.min.js"></script>
 <script src="JS/jquery.csv.min.js"></script>
@@ -9,18 +10,18 @@
 <script src="JS/tether.min.js" async></script>
 <script src="JS/bootstrap.min.js" async></script>
 <script src="JS/eventkalender-view.js" async></script>
+<script src="JS/eventkalender-view-mobile.js" async></script>
 <link rel="stylesheet" href="CSS/font-awesome.min.css">
 <link rel="stylesheet" href="CSS/tether.min.css">
 <link rel="stylesheet" href="CSS/bootstrap.min.css">
 <link rel="stylesheet" href="CSS/style.min.css">
+<link rel="stylesheet" href="CSS/style-mobile.min.css">
 <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-<script>var DEBUG=!0;if(!DEBUG){window.console||(window.console={});for(var methods=["log","debug","warn","info"],i=0;i<methods.length;i++)console[methods[i]]=function(){}}</script>
+<script>var DEBUG=!1;if(!DEBUG){window.console||(window.console={});for(var methods=["log","debug","warn","info"],i=0;i<methods.length;i++)console[methods[i]]=function(){}}</script>
 </head>
 <body onload='console.time("calendarReadAndStore"),setCalendar()'>
-<div class="container">
-<div class="row">
-<div class="col-lg-6 col-md-12">
-<div class="eventkalender">
+<div class="mobilegrid">
+<div class="eventkalender mobile">
 <div class="box navigation1">
 <i class="fa fa-chevron-left" aria-hidden="true"></i>
 </div>
@@ -96,12 +97,11 @@ ZO
 <div class="box day67">67</div>
 </div>
 </div>
+<div class="eventcount">
+5 events gevonden - 27 juni 2017
 </div>
-<div class="col-lg-6 col-md-12">
-<div class="daypicked">
-16 Juni 2017
-</div>
-<div class="eventitem">
+<div class="eventitemsmobile">
+<div class="eventitem mobile">
 <div class="title">
 Here's the title
 </div>
@@ -112,7 +112,6 @@ Here's the title
 </div>
 <div class="description">
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet suscipit excepturi libero minima quibusdam consequatur, cumque reiciendis nihil provident expedita sint nisi beatae!
-</div>
 </div>
 </div>
 </div>
